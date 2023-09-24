@@ -1,5 +1,6 @@
 package com.manuel.superhroes_luis_manuel
 
+import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.MutableTransitionState
@@ -25,6 +26,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -34,9 +36,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.manuel.superhroes_luis_manuel.model.Hero
-
+import com.manuel.superhroes_luis_manuel.ui.theme.SuperheroesTheme
+import com.manuel.superhroes_luis_manuel.model.HeroesRepo.HeroesRepository
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
@@ -125,3 +129,33 @@ fun HeroesLista(
         }
     }
 
+
+@Preview("Light Theme")
+@Preview("Dark Theme", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+fun HeroPreview() {
+    val hero = Hero(
+        R.string.hero1,
+        R.string.description1,
+        R.drawable.android_superhero1
+    )
+    SuperheroesTheme {
+        HeroListItem(hero = hero)
+    }
+}
+
+@Preview("Heroes List")
+@Composable
+fun HeroesPreview() {
+    SuperheroesTheme(darkTheme = false) {
+        Surface (
+            color = MaterialTheme.colorScheme.background
+        ) {
+            /* Important: It is not a good practice to access data source directly from the UI.
+            In later units you will learn how to use ViewModel in such scenarios that takes the
+            data source as a dependency and exposes heroes.
+            */
+            HeroesLista(heroes = HeroesRepository.heroes)
+        }
+    }
+}
