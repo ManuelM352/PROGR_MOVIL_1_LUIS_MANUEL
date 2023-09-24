@@ -10,13 +10,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.manuel.superhroes_luis_manuel.ui.theme.Superhéroes_Luis_ManuelTheme
+import com.manuel.superhroes_luis_manuel.ui.theme.SuperheroesTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Superhéroes_Luis_ManuelTheme {
+            SuperheroesTheme{
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -40,7 +40,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    Superhéroes_Luis_ManuelTheme {
-        Greeting("Android")
+    SuperheroesTheme {
+
     }
 }
